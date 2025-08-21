@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getUsers, getUserById } from "@/api/fetchUsers";
 import { User, UserDetails, UsersState } from "@/types/types";
+import NProgress from "nprogress";
 
 const initialState: UsersState = {
   data: [],
@@ -38,29 +39,35 @@ const usersSlice = createSlice({
       .addCase(fetchUsersThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
+        NProgress.start();
       })
       .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
+        NProgress.done();
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message ?? 'Ошибка загрузки';
+        NProgress.done();
       })
 
       .addCase(fetchUserByIdThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
         state.selectedUser = null;
+        NProgress.start();
       })
       .addCase(fetchUserByIdThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.selectedUser = action.payload;
+        NProgress.done();
       })
       .addCase(fetchUserByIdThunk.rejected, (state, action) => {
         state.loading = false;
         state.selectedUser = null;
         state.error = action.error.message ?? 'Пользователь не найден';
+        NProgress.done();
       });
   },
 });

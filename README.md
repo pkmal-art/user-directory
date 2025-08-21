@@ -32,4 +32,7 @@ npm run dev
 
 5. TailwindCSS
 
+## Деплой
+
+https://user-directory-vert.vercel.app/
 

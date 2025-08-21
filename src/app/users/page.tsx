@@ -18,7 +18,7 @@ export default function UsersPage() {
   const startIndex = (page - 1) * usersPerPage;
   const paginatedUsers = data.slice(startIndex, startIndex + usersPerPage);
 
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return;
   if (error) return <p>Ошибка: {error}</p>;
 
   return (

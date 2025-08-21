@@ -25,7 +25,7 @@ export default function UserDetailPage() {
 
   if (Number.isNaN(idNum) || idNum <= 0) return <p>Некорректный ID</p>;
 
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return;
 
   if (error) {
     if (error.includes("404")) return <p>Пользователь не найден</p>;
@@ -49,13 +49,13 @@ export default function UserDetailPage() {
       </h1>
       <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md space-y-2 text-gray-700">
         <p><span className="font-semibold text-purple-600">Ник:</span> {selectedUser.username}</p>
-        <p><span className="font-semibold text-teal-600">Email:</span> {selectedUser.email}</p>
-        <p><span className="font-semibold text-pink-600">Телефон:</span> {selectedUser.phone}</p>
-        <p><span className="font-semibold text-yellow-600">Сайт:</span> {selectedUser.website}</p>
-        <hr className="my-2"/>
-        <p><span className="font-semibold">Адрес:</span> {selectedUser.address.street}, {selectedUser.address.suite}, {selectedUser.address.city}</p>
-        <p><span className="font-semibold">Геопозиция:</span> {selectedUser.address.geo.lat}, {selectedUser.address.geo.lng}</p>
-        <p><span className="font-semibold">Компания:</span> {selectedUser.company.name}</p>
+        <p><span className="font-semibold text-purple-600">Email:</span> {selectedUser.email}</p>
+        <p><span className="font-semibold text-purple-600">Телефон:</span> {selectedUser.phone}</p>
+        <p><span className="font-semibold text-purple-600">Сайт:</span> {selectedUser.website}</p>
+        <p><span className="font-semibold text-purple-600">Адрес:</span> {selectedUser.address.street}, {selectedUser.address.suite}, {selectedUser.address.city}</p>
+        <p><span className="font-semibold text-purple-600">Геопозиция:</span> {selectedUser.address.geo.lat}, {selectedUser.address.geo.lng}</p>
+        <p><span className="font-semibold text-purple-600">Компания:</span> {selectedUser.company.name}</p>
+        <p><span className="font-semibold text-purple-600">Девиз компании:</span> {selectedUser.company.catchPhrase}</p>
       </div>
 
       <button
