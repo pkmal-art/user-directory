@@ -23,6 +23,7 @@ export default function UserDetailPage() {
     };
   }, [dispatch, idNum]);
 
+
   if (Number.isNaN(idNum) || idNum <= 0) return <p>Некорректный ID</p>;
 
   if (loading) return;
