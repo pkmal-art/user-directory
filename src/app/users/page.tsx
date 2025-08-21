@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { fetchUsers } from '@/redux/usersSlice';
+import { fetchUsersThunk } from '@/redux/usersSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import Link from 'next/link';
 
@@ -8,15 +8,13 @@ export default function UsersPage() {
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector((state) => state.users);
 
-  // Пагинация (только клиентская)
   const [page, setPage] = useState(1);
   const usersPerPage = 6;
 
   useEffect(() => {
-    dispatch(fetchUsers()); // загружаем пользователей при первом рендере
+    dispatch(fetchUsersThunk()); 
   }, [dispatch]);
 
-  // Индекс для slice
   const startIndex = (page - 1) * usersPerPage;
   const paginatedUsers = data.slice(startIndex, startIndex + usersPerPage);
 
@@ -47,7 +45,6 @@ export default function UsersPage() {
         ))}
       </div>
 
-      {/* Пагинация */}
       <div className="flex justify-center gap-4 mt-8">
         <button
           className="px-5 py-2 bg-gradient-to-r from-pink-400 to-purple-400 text-white rounded-xl disabled:opacity-50 shadow-md hover:scale-105 transition-transform"

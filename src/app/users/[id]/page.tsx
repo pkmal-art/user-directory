@@ -1,32 +1,40 @@
 'use client';
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { fetchUserById, clearSelectedUser } from "@/redux/usersSlice";
+import { fetchUserByIdThunk, clearSelectedUser } from "@/redux/usersSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 
 export default function UserDetailPage() {
-  const params = useParams<{ id:string }>();
+  const params = useParams<{ id: string }>();
   const idNum = Number(params.id);
 
   const router = useRouter();
-  const dispach = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { selectedUser, loading, error } = useAppSelector((state) => state.users);
 
   useEffect(() => {
-    const isInvalidId =  Number.isNaN(idNum) || idNum <= 0;
-    if (isInvalidId) return;
+    if (Number.isNaN(idNum) || idNum <= 0) return;
 
-    dispach(fetchUserById(idNum));
+    dispatch(fetchUserByIdThunk(idNum));
 
     return () => {
-      dispach(clearSelectedUser());
+      dispatch(clearSelectedUser());
     };
-  }, [dispach, idNum]);
+  }, [dispatch, idNum]);
+
 
   if (Number.isNaN(idNum) || idNum <= 0) return <p>Некорректный ID</p>;
+
   if (loading) return <p>Загрузка...</p>;
-  if (error) return <p>Ошибка: {error}</p>;
-  if (!selectedUser) return <p>Пользователь не найден</p>;
+
+  if (error) {
+    if (error.includes("404")) return <p>Пользователь не найден</p>;
+    return <p>Ошибка: {error}</p>;
+  }
+
+  if (!selectedUser) {
+    return null;
+  }
 
   return (
     <div className="p-6 min-h-screen bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 flex flex-col items-center">
@@ -57,7 +65,5 @@ export default function UserDetailPage() {
         ⬅ Назад к списку
       </button>
     </div>
-  )
-
-
+  );
 }

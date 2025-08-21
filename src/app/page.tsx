@@ -10,7 +10,7 @@ export default function HomePage() {
         Добро пожаловать!
       </h1>
       <p className="text-lg md:text-xl mb-10 text-center max-w-xl text-gray-700 leading-relaxed">
-        Это тестовое приложение на <span className="font-semibold text-purple-600">Next.js</span> +{" "}
+        Это тестовое приложение на <span className="font-semibold text-purple-600">Next.js</span> + 
         <span className="font-semibold text-teal-600">Redux Toolkit</span>.  
         Просматривайте список пользователей и открывайте детали каждого профиля!
       </p>

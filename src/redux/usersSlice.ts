@@ -7,16 +7,16 @@ const initialState: UsersState = {
   selectedUser: null,
   loading: false,
   error: null,
-}
+};
 
-export const fetchUsers = createAsyncThunk<User[]>(
+export const fetchUsersThunk = createAsyncThunk<User[]>(
   'users/fetchUsers',
   async () => {
     return await getUsers();
   }
 );
 
-export const fetchUserById = createAsyncThunk<UserDetails, number>(
+export const fetchUserByIdThunk = createAsyncThunk<UserDetails, number>(
   'users/fetchUserById',
   async (id) => {
     return await getUserById(id);
@@ -29,37 +29,39 @@ const usersSlice = createSlice({
   reducers: {
     clearSelectedUser: (state) => {
       state.selectedUser = null;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder
 
-    .addCase(fetchUsers.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(fetchUsers.fulfilled, (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    })
-    .addCase(fetchUsers.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message ?? 'Ошибка загрузки';
-    })
+      .addCase(fetchUsersThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUsersThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchUsersThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? 'Ошибка загрузки';
+      })
 
-    .addCase(fetchUserById.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-      state.selectedUser = null;
-    })
-    .addCase(fetchUserById.fulfilled, (state, action) => {
-      state.loading = false;
-      state.selectedUser = action.payload;
-    })
-    .addCase(fetchUserById.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message ?? 'Пользователь не найден';
-    });
+      .addCase(fetchUserByIdThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.selectedUser = null;
+      })
+      .addCase(fetchUserByIdThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedUser = action.payload;
+      })
+      .addCase(fetchUserByIdThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.selectedUser = null;
+        state.error = action.error.message ?? 'Пользователь не найден';
+      });
   },
 });
 
