@@ -68,7 +68,7 @@ export default function UserDetailPage() {
           className="mt-8 px-5 py-2.5 rounded-lg bg-purple-600 text-white font-medium shadow-md hover:bg-purple-700 transition-colors"
           onClick={() => router.push('/users')}
         >
-          ⬅ Назад к списку
+          Назад к списку
         </button>
       </div>
     </div>

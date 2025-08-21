@@ -56,14 +56,14 @@ export default function UsersPage() {
           disabled={page === 1}
           onClick={() => setPage(page - 1)}
         >
-          ⬅ Назад
+          Назад
         </button>
         <button
           className="px-5 py-2 rounded-lg bg-purple-600 text-white font-medium shadow-sm hover:bg-purple-700 transition-colors disabled:opacity-50"
           disabled={startIndex + usersPerPage >= data.length}
           onClick={() => setPage(page + 1)}
         >
-          Вперёд ➡
+          Вперёд
         </button>
       </div>
     </div>

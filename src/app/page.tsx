@@ -6,7 +6,7 @@ export default function HomePage() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800 px-4">
-      <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-purple-500 to-teal-500">
+      <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-purple-500 to-teal-500">
         Добро пожаловать!
       </h1>
 
