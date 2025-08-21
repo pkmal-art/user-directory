@@ -11,7 +11,8 @@ export default function HeaderButton({ text, href }: HeaderButtonProps) {
 
   return (
     <button
-      className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-md hover:scale-105 transition-transform"
+      className="px-4 py-2 text-sm 
+         rounded-lg bg-purple-600 text-white font-medium shadow-md hover:bg-purple-700 transition-colors"
       onClick={() => router.push(href)}
     >
       {text}
