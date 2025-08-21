@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { fetchUsersThunk } from '@/redux/usersSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import Link from 'next/link';
+import HeaderButton from '@/components/HeaderButton';
 
 export default function UsersPage() {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ export default function UsersPage() {
 
   return (
     <div className="p-6 min-h-screen bg-gradient-to-br from-teal-50 via-pink-50 to-yellow-50">
+      <HeaderButton text="Главная" href="/" />
       <h1 className="text-3xl md:text-4xl text-center font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
         Список пользователей
       </h1>
